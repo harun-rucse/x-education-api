@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  database:
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - x_education:/data/db
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    container_name: api
+    restart: always
+    ports:
+      - 4000:4000
+    env_file:
+      - ./.env.development
+    volumes:
+      - .:/app/x-education-api
+    depends_on:
+      - database
+
+volumes:
+  x_education:
