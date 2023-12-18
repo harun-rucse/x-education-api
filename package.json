@@ -5,7 +5,9 @@
   "scripts": {
     "start": "NODE_ENV=production node src/server.js",
     "dev": "NODE_ENV=development nodemon src/server.js",
-    "prod": "NODE_ENV=production nodemon src/server.js"
+    "prod": "NODE_ENV=production nodemon src/server.js",
+    "seed": "NODE_ENV=development node src/seeder/index.js",
+    "seed:prod": "NODE_ENV=production node src/seeder/index.js"
   },
   "license": "MIT",
   "dependencies": {

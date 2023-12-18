@@ -5,7 +5,7 @@ const AppError = require("../utils/app-error");
 
 module.exports = (app) => {
   app.use("/api/auth", authRouter);
-  app.use("/api/courses", courseRouter);
+  app.use("/api/course", courseRouter);
 
   app.all("*", (req, res, next) => {
     next(new AppError(`Can't find ${req.method} ${req.originalUrl} on this server.`, 404));

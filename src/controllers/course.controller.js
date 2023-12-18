@@ -6,7 +6,7 @@ const AppError = require("../utils/app-error");
 
 /**
  * @desc    Get all courses
- * @route   GET /api/courses
+ * @route   GET /api/course
  * @access  Public
  */
 const getAllCourses = catchAsync(async (req, res, next) => {
@@ -17,7 +17,7 @@ const getAllCourses = catchAsync(async (req, res, next) => {
 
 /**
  * @desc    Get single course
- * @route   GET /api/courses/id
+ * @route   GET /api/course/id
  * @access  Public
  */
 const getOneCourse = catchAsync(async (req, res, next) => {
@@ -29,7 +29,7 @@ const getOneCourse = catchAsync(async (req, res, next) => {
 
 /**
  * @desc    Create new course
- * @route   POST /api/courses
+ * @route   POST /api/course
  * @access  Private(admin)
  */
 const createNewCourse = catchAsync(async (req, res, next) => {
@@ -37,14 +37,14 @@ const createNewCourse = catchAsync(async (req, res, next) => {
   if (error) return next(new AppError(error.details[0].message, 400));
 
   const payload = _.pick(req.body, ["name", "description", "price", "duration", "level", "topics", "schedule"]);
-  const newCourse = await courseService.createNewCourse(payload);
+  await courseService.createNewCourse(payload);
 
-  res.status(201).json(newCourse);
+  res.status(201).json({ message: "The course has been added successfully" });
 });
 
 /**
  * @desc    Update single course
- * @route   PATCH /api/courses/id
+ * @route   PATCH /api/course/id
  * @access  Private(admin)
  */
 const updateOneCourse = catchAsync(async (req, res, next) => {
@@ -60,14 +60,14 @@ const updateOneCourse = catchAsync(async (req, res, next) => {
 
 /**
  * @desc    Delete single course
- * @route   DELETE /api/courses/id
+ * @route   DELETE /api/course/id
  * @access  Private(admin)
  */
 const deleteOneCourse = catchAsync(async (req, res, next) => {
   const deleteCourse = await courseService.deleteOneCourse({ _id: req.params.id });
   if (!deleteCourse) return next(new AppError("No course found with this id.", 404));
 
-  res.status(204).send();
+  res.status(200).json({ message: "The course has been deleted successfully" });
 });
 
 module.exports = {
