@@ -14,9 +14,6 @@ const corsOptions = {
 };
 
 module.exports = (app) => {
-  // 1) GLOBAL MIDDLEWARE
-  app.enable("trust proxy");
-
   // Enable CORS request
   app.use(cors(corsOptions));
 
