@@ -50,4 +50,28 @@ yarn run seed --refresh
 yarn run seed:prod --refresh
 ```
 
+## Run Docker in development
+
+1. Run all docker container
+
+```
+sudo docker compose up -d --build
+```
+
+2. Run development data into database inside docker container
+
+```
+sudo docker exec -it [container id] /bin/sh
+```
+
+```
+yarn run seed --refresh
+```
+
+3. Stop all docker container
+
+```
+sudo docker compose down
+```
+
 #### API documentation link: https://documenter.getpostman.com/view/31644020/2s9Ykoc1FJ
